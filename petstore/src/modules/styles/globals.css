@@ -1,0 +1,57 @@
+:root {   
+  /* Typography */
+  --textHuge : 78px;
+  --textXJumbo : 48px;
+  --textJumbo : 26px;
+  --textXLG : 18px;
+  --textLG : 16px;
+  --textXMD : 14px;
+  --textMD : 13px;
+  --textSM : 12px;
+  --textXSM : 11px;
+
+  /* Rounded */
+  --roundedCircle : 100%;
+  --roundedJumbo : 30px;
+  --roundedXLG : 20px;
+  --roundedLG : 18px;
+  --roundedMD : 14px;
+  --roundedSM : 10px;
+  --roundedMini : 6px;
+
+  /* Spacing */
+  --spaceJumbo : 35px;
+  --spaceXLG : 24px;
+  --spaceLG : 20px;
+  --spaceXMD : 16px;
+  --spaceMD : 12px;
+  --spaceSM : 10px;
+  --spaceXSM : 8px;
+  --spaceXXSM : 6px;
+  --spaceMini : 4px;
+
+  /* Table column min width */
+  --tcolMinXSM : 60px;
+  --tcolMinSM : 120px;
+  --tcolMinMD : 140px;
+  --tcolMinLG : 180px;
+  --tcolMinJumbo : 240px;
+  --tcolMinHuge : 360px;
+
+  /* Color Pallete */
+  --primaryLightBG : #00C5CB;
+  --successBG : #15DDAB;
+  --successDarkBG : #00b35a;
+  --warningBG : #E14D5B;
+  --warningDarkBG : #D5534C;
+  --infoBG : #00A8D8;
+  --infoLightBG : #E7F4FE;
+  --hoverBG : #F2F2F2;
+
+  --primaryColor : #0088CC;
+  --blackColor : #212121;
+  --darkColor : #5B5B5B;
+  --whiteColor : #FFFFFF;
+  --greyColor : #C3C3C3;
+  --shadowColor : #808080;
+}

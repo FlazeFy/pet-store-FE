@@ -1,0 +1,51 @@
+/* Nav Layout */
+.nav_holder {
+    width: 100%;
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: var(--spaceMD);
+    background: var(--primaryColor);
+}
+.nav_link {
+    text-decoration: none;
+    color: var(--whiteColor);
+    cursor: pointer;
+    padding-bottom: var(--spaceXSM);
+}
+
+/* Button */
+.profile_btn {
+    width: calc(var(--spaceJumbo) + var(--spaceMD));
+    border-radius: 100%;
+    height: calc(var(--spaceJumbo) + var(--spaceMD));
+}
+.search_btn {
+    border: 2px solid var(--whiteColor);
+    background: var(--successBG);
+    border-radius: var(--roundedMD);
+    color: var(--whiteColor);
+    padding-inline: var(--spaceMD);
+}
+
+/* Menu */
+.nav_item {
+    font-weight: 400;
+    text-align: center;
+    margin-right: var(--spaceLG);
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+.nav_item:hover {
+    font-weight: 600;
+    border-top: 2px solid var(--whiteColor);
+
+}
+.active {
+    border-bottom: 2px solid var(--whiteColor);
+    font-weight: 600;
+}
