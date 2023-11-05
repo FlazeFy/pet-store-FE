@@ -1,0 +1,54 @@
+.title {    
+    color: var(--primaryColor);
+}
+
+/* GetCatalogContainer */
+.cat_cont {
+    padding: 0;
+    height: 450px;
+    border: 3px solid var(--darkColor);
+    border-radius: var(--roundedSM) var(--roundedJumbo) var(--roundedSM) var(--roundedJumbo);
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.cat_cont:hover {
+    border: 3px solid var(--primaryColor);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: rotate(-2deg);
+}
+.cat_body {
+    padding: var(--spaceMD);
+}
+.title_ext {
+    font-weight: 500;
+    color: var(--darkColor );
+    font-size: var(--textLG);
+}
+.bio {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+.detail_btn, .add_cart {
+    padding: var(--spaceSM) var(--spaceXMD);
+    border: 2px solid transparent;
+    color: var(--whiteColor);
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: var(--roundedSM) var(--roundedXLG) var(--roundedSM) var(--roundedXLG);
+}
+.detail_btn {
+    background: var(--primaryColor);
+}
+.add_cart {
+    background: var(--successBG);
+}
+
+.detail_btn:hover, .add_cart:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4.65px 12px;
+}

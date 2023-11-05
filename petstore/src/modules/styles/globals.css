@@ -12,7 +12,7 @@
 
   /* Rounded */
   --roundedCircle : 100%;
-  --roundedJumbo : 30px;
+  --roundedJumbo : 34px;
   --roundedXLG : 20px;
   --roundedLG : 18px;
   --roundedMD : 14px;
@@ -54,4 +54,9 @@
   --whiteColor : #FFFFFF;
   --greyColor : #C3C3C3;
   --shadowColor : #808080;
+}
+
+.content-grid {
+  width: 1280px;
+  margin-inline: auto;
 }
