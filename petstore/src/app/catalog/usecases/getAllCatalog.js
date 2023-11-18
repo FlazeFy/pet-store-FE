@@ -12,7 +12,7 @@ export default function GetAllCatalog({ctx}) {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:1323/api/v1/animal/DESC?page=1`)
+        fetch(`http://127.0.0.1:1323/api/v1/catalog/DESC?page=1`)
         .then(res => res.json())
             .then(
             (result) => {

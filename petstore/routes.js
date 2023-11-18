@@ -3,7 +3,8 @@ const routes = require('next-routes')();
 
 routes.add(
     'appRoute', 
-    '/app/catalog'
+    '/app/catalog',
+    '/app/profil'
 );
 
 module.exports = routes;

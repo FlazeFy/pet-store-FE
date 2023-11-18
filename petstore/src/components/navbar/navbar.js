@@ -39,7 +39,7 @@ export default function GetNavbar({active}) {
                     <button className={style.search_btn} type="submit">Search</button>
                     <ul className="navbar-nav ms-2">
                         <li className="nav-item">
-                            <a className="nav-link p-0" aria-current="page" href="#"><img className={style.profile_btn} src="/assets/avatars/female.png"></img></a>
+                            <a className="nav-link p-0" aria-current="page" href="/profile"><img className={style.profile_btn} src="/assets/avatars/female.png"></img></a>
                         </li>
                     </ul>
                 </form>

@@ -7,3 +7,12 @@ export const htmlDecode = (val) => {
         throw error
     }
 }
+
+export const parseJSON = (val) => {
+    try {
+        const res = JSON.parse(val)
+        return res
+    } catch (error) {
+        throw error
+    }
+}

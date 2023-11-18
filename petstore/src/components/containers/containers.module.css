@@ -31,6 +31,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3; 
+    min-height: 70px;
     -webkit-box-orient: vertical;
     margin-bottom: var(--spaceMD);
 }

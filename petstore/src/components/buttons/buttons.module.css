@@ -1,0 +1,9 @@
+.btn_path {
+    border: 0;
+    background: var(--primaryColor);
+    padding: var(--spaceSM) var(--spaceXMD);
+    text-decoration: none;
+    margin-right: var(--spaceXSM);
+    color: var(--whiteColor);
+    border-radius: var(--roundedMD);
+}

@@ -15,7 +15,7 @@ export default function GetCatalogContainer({builder}) {
                 <img className={style.cat_img} src="http://localhost:3000/assets/samples/animals_1.jpg"></img>
             </div>
             <div className={style.cat_body}>
-                <h3 className={style.title}>{builder['animals_name']} 
+                <h3 className={style.title}>{builder['catalog_name']} 
                     {
                         builder['catalog_type'] == "animal" ?
                             <span className={style.title_ext}> {builder['catalog_gender']}</span>
@@ -23,10 +23,10 @@ export default function GetCatalogContainer({builder}) {
                             <></>
                     }
                 </h3>
-                <div className={style.bio} dangerouslySetInnerHTML={{ __html: htmlDecode(builder['animals_bio']) }}></div>
+                <div className={style.bio} dangerouslySetInnerHTML={{ __html: htmlDecode(builder['catalog_bio']) }}></div>
                 <button className={"me-2 " + style.add_cart} title="Add to Cart"><FontAwesomeIcon icon={faCartPlus}/></button>
-                <a className={style.detail_btn} href={"/detail/" + builder['animals_slug']}>See Detail</a>
-                <span className={style.price}>Rp. {numberToPrice(builder['animals_price'])}</span>
+                <a className={style.detail_btn} href={"/detail/" + builder['catalog_slug']}>See Detail</a>
+                <span className={style.price}>Rp. {numberToPrice(builder['catalog_price'])}</span>
             </div>
         </div>
     </div>
