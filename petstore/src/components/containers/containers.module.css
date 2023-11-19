@@ -65,3 +65,18 @@
     height: 300px;
     border-radius: var(--roundedSM) var(--roundedJumbo) 0 0;
 }
+
+/* GetShelfContainer */
+.shelf_box {
+    cursor: pointer;
+    width: 100%;
+    border: 2px solid var(--shadowColor);
+    padding: var(--spaceMD);
+    margin-bottom: var(--spaceMD);
+    border-radius: var(--roundedSM) var(--roundedLG) var(--roundedSM) var(--roundedSM);
+}
+.shelf_box:hover {
+   background: var(--primaryColor);
+   border: 2px solid var(--primaryColor);
+   color: var(--whiteColor);
+}

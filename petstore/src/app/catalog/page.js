@@ -1,6 +1,5 @@
 "use client"
 // Components
-import GetCatalogContainer from "@/components/containers/catalog"
 import GetLable from "@/components/label/label"
 import GetNavbar from "@/components/navbar/navbar"
 import GetBreakLine from "@/components/others/breakLine"

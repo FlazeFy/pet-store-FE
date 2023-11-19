@@ -62,7 +62,7 @@ export default function GetMyProfile({ctx}) {
                                 <div className='col-lg-7 col-md-6 col-sm-12'>
                                     <div class="mb-3">
                                         <label for="nameInput" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="nameInput" value={data['customers_name']}></input>
+                                        <input type="text" class="form-control" id="nameInput" value={data['customer_name']}></input>
                                     </div>
                                     <div class="mb-3">
                                         <label for="emailInput" class="form-label">Email</label>

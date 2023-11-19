@@ -19,19 +19,19 @@ export default function GetNavbar({active}) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className={style.nav_item}>
-                        <a className={style.nav_link + " " + getActive(active,"home")} aria-current="page" href="#">Home</a>
+                        <a className={style.nav_link + " " + getActive(active,"home")} aria-current="page" href="/">Home</a>
                     </li>
                     <li className={style.nav_item}>
-                        <a className={style.nav_link + " " + getActive(active,"catalog")} aria-current="page" href="#">Catalog</a>
+                        <a className={style.nav_link + " " + getActive(active,"catalog")} aria-current="page" href="/catalog">Catalog</a>
                     </li>
                     <li className={style.nav_item}>
-                        <a className={style.nav_link + " " + getActive(active,"pets")} aria-current="page" href="#">My Pets</a>
+                        <a className={style.nav_link + " " + getActive(active,"pets")} aria-current="page" href="/mypets">My Pets</a>
                     </li>
                     <li className={style.nav_item}>
-                        <a className={style.nav_link + " " + getActive(active,"help")} aria-current="page" href="#">Help</a>
+                        <a className={style.nav_link + " " + getActive(active,"help")} aria-current="page" href="/help">Help</a>
                     </li>
                     <li className={style.nav_item}>
-                        <a className={style.nav_link + " " + getActive(active,"about")} aria-current="page" href="#">About Us</a>
+                        <a className={style.nav_link + " " + getActive(active,"about")} aria-current="page" href="/about">About Us</a>
                     </li>
                 </ul>
                 <form className="d-flex">
