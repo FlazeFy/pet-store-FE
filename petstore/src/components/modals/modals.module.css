@@ -1,0 +1,7 @@
+.manage_btn {
+    background: var(--primaryColor);
+    color: var(--whiteColor);
+    padding: var(--spaceMD) var(--spaceLG);
+    border: none;
+    border-radius: var(--roundedSM);
+}
