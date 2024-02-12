@@ -83,3 +83,9 @@
 .btn {
   border: 0 !important;
 }
+.img-landing-section {
+  height: 400px;
+  margin-inline: auto;
+  display: block;
+  width: 400px !important;
+}

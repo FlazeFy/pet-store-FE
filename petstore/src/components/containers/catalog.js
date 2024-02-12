@@ -12,7 +12,7 @@ export default function GetCatalogContainer({builder}) {
     return <div className='col-lg-4 col-md-3 col-sm-12'>
         <div className={style.cat_cont}>
             <div>
-                <img className={style.cat_img} src="http://localhost:3000/assets/samples/animals_1.jpg"></img>
+                <img className={style.cat_img} src="/assets/samples/animals_1.jpg"></img>
             </div>
             <div className={style.cat_body}>
                 <h3 className={style.title}>{builder['catalog_name']} 
