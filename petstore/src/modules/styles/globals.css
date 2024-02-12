@@ -60,3 +60,26 @@
   width: 1280px;
   margin-inline: auto;
 }
+
+.btn-primary {
+  background: var(--primaryColor) !important;
+}
+.btn-success {
+  background: var(--successBG) !important;
+}
+.btn-danger {
+  background: var(--warningBG) !important;
+}
+.text-primary {
+  color: var(--primaryColor) !important;
+}
+.text-success {
+  color: var(--successBG) !important;
+}
+.text-danger {
+  color: var(--warningBG) !important;
+}
+
+.btn {
+  border: 0 !important;
+}

@@ -25,7 +25,7 @@ export default function GetCatalogContainer({builder}) {
                 </h3>
                 <div className={style.bio} dangerouslySetInnerHTML={{ __html: htmlDecode(builder['catalog_bio']) }}></div>
                 <button className={"me-2 " + style.add_cart} title="Add to Cart"><FontAwesomeIcon icon={faCartPlus}/></button>
-                <a className={style.detail_btn} href={"/detail/" + builder['catalog_slug']}>See Detail</a>
+                <a className={style.detail_btn} href={"/catalog/"+ builder['catalog_type'] + '/' + builder['catalog_slug']}>See Detail</a>
                 <span className={style.price}>Rp. {numberToPrice(builder['catalog_price'])}</span>
             </div>
         </div>

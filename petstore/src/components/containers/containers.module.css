@@ -6,16 +6,15 @@
 .cat_cont {
     padding: 0;
     height: 510px;
-    border: 3px solid var(--darkColor);
     border-radius: var(--roundedSM) var(--roundedJumbo) var(--roundedSM) var(--roundedJumbo);
-    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+    margin-bottom: var(--spaceXLG);
 }
 .cat_cont:hover {
     border: 3px solid var(--primaryColor);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transform: rotate(-2deg);
 }
 .cat_body {

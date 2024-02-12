@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 
 // Modules
-import { getLocal, storeLocal } from '../../../modules/storages/local'
+import { getLocal } from '../../../modules/storages/local'
 
 export default function GetAllCatalog({ctx}) {
     //Initial variable
@@ -42,7 +42,7 @@ export default function GetAllCatalog({ctx}) {
     } else {
         return (
             <> 
-                 {
+                {
                     items.map((data, i, idx) => {
                         return (
                             <GetCatalogContainer builder={data}/>
