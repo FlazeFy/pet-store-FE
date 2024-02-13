@@ -84,8 +84,9 @@ export default function PostFeedback({ctx}) {
             <GetBreakLine length={3}/>
             <div className='mt-4 text-center row' id={ctx}>
                 <div className='col-lgl-6 col-md-6 col-sm-12'>
-                    <GetBreakLine length={5}/>
-                    <h1 style={{fontSize:"var(--textXJumbo)"}}>SEND FEEDBACK</h1>
+                    <GetBreakLine length={2}/>
+                    <img style={{width:"300px"}} src="/assets/feedback.png"></img>
+                    <h1 style={{fontSize:"var(--textXJumbo)"}}>Send Feedback</h1>
                     <GetBreakLine length={1}/>
                     <h6 className="text-white" style={{fontSize:"var(--textJumbo)"}}>This app is still at development, so your feedback will be very helpfull</h6>
                 </div> 

@@ -10,7 +10,7 @@ export default function GetShelfContainer({builder}) {
         tagArr = parseJSON(builder['shelfs_tag'])
     }
     
-    return <div className='col-lg-3 col-md-4 col-sm-6'>
+    return <div className='col-lg-3 col-md-4 col-sm-6 mx-auto'>
         <div className={style.shelf_box} onClick={() => goToPage('shelf/'+builder['shelfs_slug'])}>
             <h5>{builder['shelfs_name']}</h5>
             {

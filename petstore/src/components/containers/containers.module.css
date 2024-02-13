@@ -69,13 +69,16 @@
 .shelf_box {
     cursor: pointer;
     width: 100%;
-    border: 2px solid var(--shadowColor);
-    padding: var(--spaceMD);
+    padding: var(--spaceXMD);
     margin-bottom: var(--spaceMD);
-    border-radius: var(--roundedSM) var(--roundedLG) var(--roundedSM) var(--roundedSM);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: var(--roundedLG);
+    text-align: center;
 }
 .shelf_box:hover {
    background: var(--primaryColor);
-   border: 2px solid var(--primaryColor);
    color: var(--whiteColor);
 }

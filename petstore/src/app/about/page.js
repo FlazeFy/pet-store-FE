@@ -11,7 +11,7 @@ import PostFeedback from "./usecases/postFeedback"
   
 export default function AboutPage() {
     return <>
-        <GetNavbar active="catalog"/>
+        <GetNavbar active="about"/>
         <div className="content-grid">
             <PostFeedback ctx="post_feedback"/>
             <GetBreakLine length={2}/>

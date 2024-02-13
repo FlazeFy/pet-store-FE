@@ -12,3 +12,15 @@
     font-size: var(--textXLG);
     color: var(--darkColor);
 }
+label.input{
+    float: left;
+    font-size: var(--textLG);
+    margin-bottom: 2px;
+    font-weight: 500;
+    color: var(--darkColor);
+}
+label.error{
+    font-size: var(--textXSM);
+    color: var(--warningBG);
+    margin: 0;
+}
