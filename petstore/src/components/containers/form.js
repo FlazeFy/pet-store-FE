@@ -18,7 +18,7 @@ export default function GetFormTemplate({type, props}) {
                 <div className='row'>
                     {
                         props.map((elmt, idx) => {
-                            if (elmt.type === 'text' || elmt.type === 'number' || elmt.type === 'range') {
+                            if (elmt.type === 'text' || elmt.type === 'number' || elmt.type === 'range' || elmt.type === 'password') {
                                 return (
                                     <div className='col-lg-12 col-md-12 col-sm-12 text-start mb-3' key={idx}>
                                         <GetLable title={elmt.label} type="input"/>
