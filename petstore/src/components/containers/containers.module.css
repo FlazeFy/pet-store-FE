@@ -66,7 +66,7 @@
 }
 
 /* GetShelfContainer */
-.shelf_box {
+.shelf_box, .goods_box {
     cursor: pointer;
     width: 100%;
     padding: var(--spaceXMD);
@@ -78,7 +78,10 @@
     border-radius: var(--roundedLG);
     text-align: center;
 }
-.shelf_box:hover {
+.shelf_box:hover, .goods_box:hover {
    background: var(--primaryColor);
    color: var(--whiteColor);
+}
+.goods_box:hover {
+    transform: rotate(-2deg);
 }
