@@ -8,7 +8,7 @@ import style from '../../../../../components/label/label.module.css'
 //Font awesome classicon
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLeaf, faPaw } from "@fortawesome/free-solid-svg-icons"
+import { faCartPlus, faClose, faHeadset, faHeart, faLeaf, faPaw } from "@fortawesome/free-solid-svg-icons"
 import { numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
 import GetBreakLine from '@/components/others/breakLine'
 
@@ -38,6 +38,27 @@ export default function GetDetailCatalog({ctx, type, slug}) {
         )
     },[])
 
+    function getGenderColor(val){
+        if(val == 'male'){
+            return 'var(--primaryColor)'
+        } else {
+            return 'var(--warningBG)'
+        }
+    }
+
+    function getTotalColor(val){
+        if(val == 0){
+            return 'var(--darkColor)'
+        } else if(val > 0 && val <= 50){
+            return 'var(--warningBG)'
+        } else if(val > 50 && val <= 250){ 
+            return 'var(--successBG)'
+        } else {
+            return 'var(--primaryColor)'
+        }
+
+    }
+
     if (error) {
         return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
@@ -52,15 +73,36 @@ export default function GetDetailCatalog({ctx, type, slug}) {
             <> 
                 <span>
                     <div className={style.title_holder}>
-                        <h1 className={style.title_text + ' mb-1'}><FontAwesomeIcon icon={
-                            type == 'animal'?
-                                faPaw
-                            : type == 'plant' ?
-                                faLeaf
-                            : 
-                                <></>
-                        }/> {item[0][type+'s_name']}</h1>
-                        <h6>Born at {item[0][type+'s_date_born']}</h6>
+                        <div className="d-flex justify-content-between">
+                            <button className='btn btn-danger rounded px-4' title="Back" onClick={(e) => window.location.href = '/catalog'}>
+                                <FontAwesomeIcon icon={faClose} size="xl"/></button>
+                            <div>
+                                <h1 className={style.title_text + ' mb-1'}><FontAwesomeIcon icon={
+                                    type == 'animal'?
+                                        faPaw
+                                    : type == 'plant' ?
+                                        faLeaf
+                                    : 
+                                        <></>
+                                }/> {item[0][type+'s_name']}</h1>
+                                {
+                                    type == 'plant' ? 
+                                        <h6>Born at {item[0][type+'s_date_born']}</h6>
+                                    : 
+                                        <></>
+                                }
+                            </div>
+                            <div>
+                                <button className='btn btn-success rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
+                                    <FontAwesomeIcon icon={faCartPlus} size="xl"/></button>
+                                <button className='btn btn-danger rounded px-4 h-100 me-2' title="Add to wishlist" onClick={(e) => window.location.href = '/catalog'}>
+                                    <FontAwesomeIcon icon={faHeart} size="xl"/></button>
+                                <button className='btn btn-info text-white rounded px-4 h-100' title={"Ask more about "+ item[0][type+'s_name']} onClick={(e) => window.location.href = '/catalog'}>
+                                    <FontAwesomeIcon icon={faHeadset} size="xl"/></button>
+                            </div>
+                        </div>
+                        <GetBreakLine length={1}/>
+                        <hr></hr>
                         <GetBreakLine length={1}/>
                         {
                             tags.map((data, i, idx) => {
@@ -70,13 +112,11 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                             })
                         }
                         <GetBreakLine length={1}/>
-                        <hr></hr>
-                        <GetBreakLine length={1}/>
                         <div className='text-center'>
                             <h3 className='mb-4'>About {ucFirstChar(type)}</h3>
                             <div className='row mb-3 text-center'>
                                 <div className='col-lg-4 col-md-4 col-sm-6'>
-                                    <h2 className='mb-0 fw-bold text-primary'>{ucFirstWord(item[0][type+'s_stock'])}</h2>
+                                    <h2 className='mb-0 fw-bold' style={{color:getTotalColor(item[0][type+'s_stock'])}}>{ucFirstWord(item[0][type+'s_stock'])}</h2>
                                     <h5 className='text-secondary'>Stock</h5>
                                 </div>
                                 <div className='col-lg-4 col-md-4 col-sm-6'>
@@ -86,7 +126,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                 {
                                     type == 'animal' ?
                                         <div className='col-lg-4 col-md-4 col-sm-6'>
-                                            <h2 className='mb-0 fw-bold text-danger'>{ucFirstWord(item[0][type+'s_gender'])}</h2>
+                                            <h2 className='mb-0 fw-bold d-inline px-3 py-2' style={{color:getGenderColor(item[0][type+'s_gender'])}}>{ucFirstWord(item[0][type+'s_gender'])}</h2>
                                             <h5 className='text-secondary'>Gender</h5>
                                         </div>
                                     :

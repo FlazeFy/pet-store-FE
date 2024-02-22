@@ -6,7 +6,15 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus} from "@fortawesome/free-solid-svg-icons"
 import { htmlDecode } from '@/modules/helpers/decode'
-import { numberToPrice } from '@/modules/helpers/converter'
+import { numberToPrice, ucFirstWord } from '@/modules/helpers/converter'
+
+function getGenderColor(val){
+    if(val == 'male'){
+        return 'var(--primaryColor)'
+    } else {
+        return 'var(--warningBG)'
+    }
+}
 
 export default function GetCatalogContainer({builder}) {
     return <div className='col-lg-4 col-md-3 col-sm-12'>
@@ -18,7 +26,7 @@ export default function GetCatalogContainer({builder}) {
                 <h3 className={style.title}>{builder['catalog_name']} 
                     {
                         builder['catalog_type'] == "animal" ?
-                            <span className={style.title_ext}> {builder['catalog_gender']}</span>
+                            <span className={style.title_ext} style={{background:getGenderColor(builder['catalog_gender'])}}>{ucFirstWord(builder['catalog_gender'])}</span>
                         :
                             <></>
                     }

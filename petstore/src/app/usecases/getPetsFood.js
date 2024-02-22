@@ -39,7 +39,7 @@ export default function GetPetsFood({ctx}) {
         )
     } else {
         return (
-            <div className='mt-3'> 
+            <div className='mt-3 mb-5'> 
                 <img src="/assets/pet_food.png" className='img-landing-section'/>
                 <GetLable type="main_title" title="We have many various food for your pets" desc="Here's the best seller this month"/>
                 {

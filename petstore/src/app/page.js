@@ -27,13 +27,21 @@ export default function Home() {
       <div className="row">
         <GetAllShelf ctx="get_all_shelf"/>
         <GetBreakLine length={8}/>
+        <GetBreakLine length={2}/>
+        <hr></hr>
+
         <GetBreakLine length={3}/>
         <GetPetsFood ctx="get_pets_food"/>
         <GetBreakLine length={8}/>
+        <GetBreakLine length={1}/>
+        <hr></hr>
+
         <GetBreakLine length={3}/>
         <GetPickupService ctx="get_pickup_service"/>
         <GetBreakLine length={8}/>
-        <GetBreakLine length={3}/>
+        <GetBreakLine length={1}/>
+        <hr></hr>
+
         <GetVeterinary ctx="get_veterinary"/>
       </div>
     </div>

@@ -22,8 +22,11 @@
 }
 .title_ext {
     font-weight: 500;
-    color: var(--darkColor );
-    font-size: var(--textLG);
+    color: var(--whiteColor);
+    font-size: var(--textXMD);
+    padding: var(--spaceXXSM) var(--spaceSM);
+    border-radius: var(--roundedSM);
+    margin-left: var(--spaceMD);
 }
 .bio {
     overflow: hidden;
@@ -77,6 +80,7 @@
     transition: all 0.3s;
     border-radius: var(--roundedLG);
     text-align: center;
+    position: relative;
 }
 .shelf_box:hover, .goods_box:hover {
    background: var(--primaryColor);
@@ -84,4 +88,15 @@
 }
 .goods_box:hover {
     transform: rotate(-2deg);
+}
+.box_tag {
+    position: absolute;
+    right: var(--spaceXMD);
+    top: var(--spaceXMD);
+    border-radius: var(--roundedXLG);
+    background: var(--infoBG);
+    padding: var(--spaceMD) var(--spaceXMD);
+    text-transform: capitalize;
+    color: var(--whiteColor);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2.75px 6.5px;
 }

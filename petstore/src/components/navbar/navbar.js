@@ -28,6 +28,9 @@ export default function GetNavbar({active}) {
                         <a className={style.nav_link + " " + getActive(active,"pets")} aria-current="page" href="/mypets">My Pets</a>
                     </li>
                     <li className={style.nav_item}>
+                        <a className={style.nav_link + " " + getActive(active,"veterinary")} aria-current="page" href="/veterinary">Veterinary</a>
+                    </li>
+                    <li className={style.nav_item}>
                         <a className={style.nav_link + " " + getActive(active,"help")} aria-current="page" href="/help">Help</a>
                     </li>
                     <li className={style.nav_item}>
