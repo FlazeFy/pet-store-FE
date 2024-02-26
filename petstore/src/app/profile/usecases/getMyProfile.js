@@ -9,6 +9,7 @@ import { getLocal } from '../../../modules/storages/local'
 // Components
 import GetButtonPath from '@/components/buttons/button_path'
 import GetBreakLine from '@/components/others/breakLine'
+import GetMyWishlist from './getMyWishlist'
 
 export default function GetMyProfile({ctx}) {
     //Initial variable
@@ -16,8 +17,14 @@ export default function GetMyProfile({ctx}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
 
+    const keyToken = getLocal("token_key")
+
     useEffect(() => {
-        fetch(`http://127.0.0.1:1323/api/v1/customer/my/profile`)
+        fetch(`http://127.0.0.1:1323/api/v1/customer/my/profile`, {
+            headers: {
+                Authorization: `Bearer ${keyToken}`
+            }
+        })
         .then(res => res.json())
             .then(
             (result) => {
@@ -75,7 +82,7 @@ export default function GetMyProfile({ctx}) {
                                     <h6>Joined since {convertDatetime(data['created_at'],"date")}</h6>
 
                                     <GetBreakLine length={1}/>
-                                    <h6 className='mb-3'>My Interest</h6>
+                                    <h5 className='mb-3'>My Interest</h5>
                                     {
                                         tagArr.map((tg, i, idx) => {
                                             return (
@@ -83,6 +90,10 @@ export default function GetMyProfile({ctx}) {
                                             )
                                         })
                                     }
+
+                                    <GetBreakLine length={1}/>
+                                    <h5 className='mb-3'>My Wishlist</h5>
+                                    <GetMyWishlist ctx="get_my_wishlist"/>
                                 </div>
                             </div>
                         );

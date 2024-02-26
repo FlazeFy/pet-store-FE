@@ -89,3 +89,21 @@
   display: block;
   width: 400px !important;
 }
+
+.tile {
+  border-radius: var(--roundedLG);
+  padding: var(--spaceLG) var(--spaceMD);
+  margin-bottom: var(--spaceMD);
+  border: 1.25px solid var(--greyColor);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  background: var(--whiteColor);
+  width: 100%;
+  text-align: start;
+}
+.tile:hover {
+  border: 1.5px solid var(--darkColor);
+  transform: scale(1.02);
+}
