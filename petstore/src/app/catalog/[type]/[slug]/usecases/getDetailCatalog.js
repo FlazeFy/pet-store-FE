@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faClose, faHeadset, faHeart, faLeaf, faPaw } from "@fortawesome/free-solid-svg-icons"
 import { numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
 import GetBreakLine from '@/components/others/breakLine'
+import GetIsWishlist from './getIsWishlist'
 
 export default function GetDetailCatalog({ctx, type, slug}) {
     //Initial variable
@@ -95,8 +96,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                             <div>
                                 <button className='btn btn-success rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
                                     <FontAwesomeIcon icon={faCartPlus} size="xl"/></button>
-                                <button className='btn btn-danger rounded px-4 h-100 me-2' title="Add to wishlist" onClick={(e) => window.location.href = '/catalog'}>
-                                    <FontAwesomeIcon icon={faHeart} size="xl"/></button>
+                                <GetIsWishlist ctx="get_is_wishlist" type={type} slug={slug}/>
                                 <button className='btn btn-info text-white rounded px-4 h-100' title={"Ask more about "+ item[0][type+'s_name']} onClick={(e) => window.location.href = '/catalog'}>
                                     <FontAwesomeIcon icon={faHeadset} size="xl"/></button>
                             </div>
