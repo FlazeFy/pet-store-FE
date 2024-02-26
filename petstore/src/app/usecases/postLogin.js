@@ -1,11 +1,14 @@
 'use strict'
-import GetFormTemplate from '@/components/containers/form'
-import GetLable from '@/components/label/label'
-import { isLogged } from '@/modules/helpers/auth'
-import { getLocal, storeLocal } from '@/modules/storages/local'
 import Axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from "react"
+
+import GetFormTemplate from '@/components/containers/form'
+import GetLable from '@/components/label/label'
+import GetBreakLine from '@/components/others/breakLine'
+import { isLogged } from '@/modules/helpers/auth'
+import { getLocal, storeLocal } from '@/modules/storages/local'
+import PostSignOut from './postSignOut'
 
 export default function PostLogin({ctx}) {
     //Initial variable
@@ -44,6 +47,11 @@ export default function PostLogin({ctx}) {
             errorMsg: resMsgPassword
         },
         {
+            type: 'warning',
+            class: 'text-danger',
+            label: resMsgAll
+        },
+        {
             type: 'submit',
             class: 'btn btn-success rounded-pill',
             label: 'Submit',
@@ -63,14 +71,13 @@ export default function PostLogin({ctx}) {
             data.append('username', username);
             data.append('password', password);
             
-            const response = await Axios.postForm("http://127.0.0.1:1323/api/v1/login", data, {
+            const response = await Axios.post("http://127.0.0.1:1323/api/v1/login", data, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }
             })
-            if(response.status != 200){
-                window.location.reload(false)
-                return response.data.message
+            if(response.data.status != 200){
+                setResMsgAll(response.data.message)
             } else {
                 const data = response.data.data
                 storeLocal('username_key', username)
@@ -91,12 +98,16 @@ export default function PostLogin({ctx}) {
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
                     {
-                        isLogged ?
+                        isLogged
+                        (
                             <div className='text-center'>
-                                <h1 style={{color:"var(--primaryColor)"}}>Signed in as, <span style={{color:"var(--darkColor)"}}>{getLocal('username_key')}</span></h1>
+                                <h2 style={{color:"var(--primaryColor)"}}>Signed in using, <span style={{color:"var(--darkColor)"}}>{getLocal('username_key')}</span></h2>
+                                <GetBreakLine length={1}/>
+                                <PostSignOut/>
                             </div>
-                        :
+                        ,
                             <GetFormTemplate type={"single-line"} props={builder} />
+                        )
                     }
                 </div>
             </div>

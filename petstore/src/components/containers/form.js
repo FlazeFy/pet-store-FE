@@ -8,7 +8,7 @@ import { countHalf } from '@/modules/helpers/math'
 //Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane, faWarning } from "@fortawesome/free-solid-svg-icons"
 import GetLable from '../label/label'
 
 export default function GetFormTemplate({type, props}) {
@@ -105,6 +105,20 @@ export default function GetFormTemplate({type, props}) {
                                             onClick={elmt.handleClick}>
                                             <FontAwesomeIcon icon={faPaperPlane} color="var(--secondaryBG)"/> {elmt.label}
                                         </button>
+                                    </div>
+                                )
+                            } else if (elmt.type === 'warning') {
+                                return (
+                                    <div key={idx}>
+                                        {
+                                            elmt.label != null && elmt.label != "" ?
+                                                <a className={elmt.class +" fst-italic"} style={{fontSize:"var(--textMD)", textDecoration:"none"}}>
+                                                    <FontAwesomeIcon icon={faWarning} color="var(--secondaryBG)"/> {elmt.label}
+                                                </a>
+                                            :
+                                                <></>
+
+                                        }
                                     </div>
                                 )
                             } else {

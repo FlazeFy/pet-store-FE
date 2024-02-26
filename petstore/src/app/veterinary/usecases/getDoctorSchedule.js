@@ -1,5 +1,4 @@
 import GetMsgText from '@/components/messages/msg_text'
-import { getCleanTitleFromCtx } from '@/modules/helpers/converter'
 import React from 'react'
 import { useState, useEffect } from "react"
 
@@ -54,7 +53,6 @@ export default function GetDoctorSchedule({ctx}) {
     } else {
         return (
             <>
-                <h3>{getCleanTitleFromCtx(ctx)}</h3>
                 <table className="table">
                     <thead>
                         <tr>
