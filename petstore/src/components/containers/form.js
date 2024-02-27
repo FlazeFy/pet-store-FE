@@ -8,7 +8,7 @@ import { countHalf } from '@/modules/helpers/math'
 //Font awesome classicon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { faPaperPlane, faWarning } from "@fortawesome/free-solid-svg-icons"
+import { faInfoCircle, faPaperPlane, faWarning } from "@fortawesome/free-solid-svg-icons"
 import GetLable from '../label/label'
 
 export default function GetFormTemplate({type, props}) {
@@ -107,14 +107,19 @@ export default function GetFormTemplate({type, props}) {
                                         </button>
                                     </div>
                                 )
-                            } else if (elmt.type === 'warning') {
+                            } else if (elmt.type === 'warning' || elmt.type === 'information') {
                                 return (
                                     <div key={idx}>
                                         {
                                             elmt.label != null && elmt.label != "" ?
-                                                <a className={elmt.class +" fst-italic"} style={{fontSize:"var(--textMD)", textDecoration:"none"}}>
-                                                    <FontAwesomeIcon icon={faWarning} color="var(--secondaryBG)"/> {elmt.label}
-                                                </a>
+                                                <>
+                                                    <a className={elmt.class + elmt.type == 'warning' ? " fst-italic":""} style={{fontSize: elmt.type == 'warning' ? "var(--textMD)":"var(--textLG)", textDecoration:"none"}}>
+                                                        <FontAwesomeIcon icon={elmt.type == 'warning' ? faWarning : faInfoCircle} color="var(--secondaryBG)"/> {elmt.label}
+                                                    </a>
+                                                    {
+                                                        elmt.type == 'information' ? <GetBreakLine length={2}/> : <></>
+                                                    }
+                                                </>
                                             :
                                                 <></>
 

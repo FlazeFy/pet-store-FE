@@ -9,6 +9,13 @@ import GetBreakLine from '@/components/others/breakLine'
 import { isLogged } from '@/modules/helpers/auth'
 import { getLocal, storeLocal } from '@/modules/storages/local'
 import PostSignOut from './postSignOut'
+import PostRole from './postRole'
+
+//Font awesome classicon
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons"
+import { ucFirstChar } from '@/modules/helpers/converter'
 
 export default function PostLogin({ctx}) {
     //Initial variable
@@ -20,6 +27,11 @@ export default function PostLogin({ctx}) {
     const [resMsgAll, setResMsgAll] = useState("")
 
     const builder = [
+        {
+            type: 'information',
+            class: 'text-primary',
+            label: 'Choosen role : '+ getLocal('role_key')
+        },
         {
             type: 'text',
             class: 'form-control',
@@ -88,6 +100,14 @@ export default function PostLogin({ctx}) {
             setResMsgAll(error)
         }
     }
+    const removeSelectedRole = async (e) => {
+        try {
+            localStorage.removeItem('role_key')
+            window.location.href = '/'
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className='mt-3'> 
@@ -106,7 +126,19 @@ export default function PostLogin({ctx}) {
                                 <PostSignOut/>
                             </div>
                         ,
-                            <GetFormTemplate type={"single-line"} props={builder} />
+                            <>
+                                {
+                                    getLocal('role_key') == null ?
+                                        <PostRole ctx="post_role"/>
+                                    :
+                                        <>
+                                            <a className='text-danger' style={{cursor:"pointer", textDecoration:"none"}} onClick={removeSelectedRole}
+                                                ><FontAwesomeIcon icon={faArrowCircleLeft} size="xl" className='me-3'/>Back to role selection</a>
+                                            <GetBreakLine length={3}/>
+                                            <GetFormTemplate type={"single-line"} props={builder}/>
+                                        </>
+                                }
+                            </>
                         )
                     }
                 </div>

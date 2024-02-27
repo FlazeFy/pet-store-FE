@@ -107,3 +107,40 @@
   border: 1.5px solid var(--darkColor);
   transform: scale(1.02);
 }
+
+.box-role {
+  position: relative;
+  padding: var(--spaceMD);
+  cursor: pointer;
+  border-radius: var(--roundedLG);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  background: var(--whiteColor);
+  text-align: center;
+  margin: var(--spaceSM);
+  border: 1.25px solid var(--greyColor);
+}
+.box-role .box-lable {
+  display: none;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  background: var(--successBG);
+  color: var(--whiteColor);
+  font-weight: 500;
+  border-radius: var(--roundedMD);
+  padding: var(--spaceMD) var(--spaceSM);
+  font-size: var(--spaceXMD);
+  position: absolute;
+  bottom: var(--spaceSM);
+  left: 10%;
+  width: 80%;
+}
+.box-role:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: scale(1.025);
+}
+.box-role:hover .box-lable {
+  display: block;
+}
