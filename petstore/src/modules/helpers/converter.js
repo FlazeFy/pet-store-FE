@@ -45,6 +45,16 @@ export const getCleanTitleFromCtx = (val) => {
     }
 }
 
+export const trimLastChar = (val) => {
+    try {
+        const res = val.substring(0, val.length - 1)
+
+        return res
+    } catch (error) {
+        throw error 
+    }
+}
+
 export const convertDatetime = (val, type) => {
     try {
         if(val){
