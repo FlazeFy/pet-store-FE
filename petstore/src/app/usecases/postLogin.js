@@ -79,9 +79,11 @@ export default function PostLogin({ctx}) {
     // Services
     const handleSubmit = async (e) => {
         try {
-            const data = new FormData();
-            data.append('username', username);
-            data.append('password', password);
+            const role = getLocal('role_key')
+            const data = new FormData()
+            data.append('username', username)
+            data.append('password', password)
+            data.append('role', role)
             
             const response = await Axios.post("http://127.0.0.1:1323/api/v1/login", data, {
                 headers: {
@@ -122,6 +124,7 @@ export default function PostLogin({ctx}) {
                         (
                             <div className='text-center'>
                                 <h2 style={{color:"var(--primaryColor)"}}>Signed in using, <span style={{color:"var(--darkColor)"}}>{getLocal('username_key')}</span></h2>
+                                <h4>As, <button className='btn btn-success rounded-pill py-2 px-4' style={{textTransform:"capitalize"}}>{getLocal('role_key')}</button></h4>
                                 <GetBreakLine length={1}/>
                                 <PostSignOut/>
                             </div>

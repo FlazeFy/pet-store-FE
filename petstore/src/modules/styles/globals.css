@@ -80,9 +80,17 @@
   color: var(--warningBG) !important;
 }
 
-.btn {
+button.btn {
   border: 0 !important;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }
+button.btn:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .img-landing-section {
   height: 400px;
   margin-inline: auto;

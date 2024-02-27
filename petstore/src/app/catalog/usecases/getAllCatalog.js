@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 
 // Modules
-import { getLocal } from '../../../modules/storages/local'
+import { getLocal, storeLocal } from '../../../modules/storages/local'
 
 export default function GetAllCatalog({ctx}) {
     //Initial variable
@@ -12,7 +12,14 @@ export default function GetAllCatalog({ctx}) {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:1323/api/v1/catalog/DESC?page=1`)
+        //Default config
+        const keyOrder = getLocal("Table_order_"+ctx)
+
+        if(keyOrder === null){
+            storeLocal("Table_order_"+ctx,"ASC")
+        }
+        
+        fetch(`http://127.0.0.1:1323/api/v1/catalog/${keyOrder}?page=1`)
         .then(res => res.json())
             .then(
             (result) => {
