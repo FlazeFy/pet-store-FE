@@ -12,6 +12,7 @@ export default function GetIsWishlist({ctx, type, slug, id}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItems] = useState(null)
+    const [wishlistId, setWishlistId] = useState(null)
     const [resMsgAll, setResMsgAll] = useState("")
 
     //Default config
@@ -27,7 +28,8 @@ export default function GetIsWishlist({ctx, type, slug, id}) {
             .then(
             (result) => {
                 setIsLoaded(true)
-                setItems(result.data)        
+                setItems(result.data.is_checked)
+                setWishlistId(result.data.id)        
             },
             (error) => {
                 if(getLocal(ctx + "_sess") !== undefined){
@@ -41,13 +43,31 @@ export default function GetIsWishlist({ctx, type, slug, id}) {
         )
     },[])
 
-    const handleSubmit = async (e) => {
+    const postWishlist = async (e) => {
         try {
             const data = new FormData();
             data.append('catalog_type', type+'s');
             data.append('catalog_id', id);
 
             const response = await Axios.post("http://127.0.0.1:1323/api/v1/catalog/wishlist/add", data, {
+                headers: {
+                    Authorization: `Bearer ${keyToken}`
+                }
+            })
+            if(response.status != 200){
+                window.location.reload(false)
+                return response.data.message
+            } else {
+                window.location.reload(true)
+            }
+        } catch (error) {
+            setResMsgAll(error)
+        }
+    }
+
+    const delWishlist = async (e) => {
+        try {
+            const response = await Axios.delete(`http://127.0.0.1:1323/api/v1/catalog/wishlist/destroy/${wishlistId}`, {
                 headers: {
                     Authorization: `Bearer ${keyToken}`
                 }
@@ -77,10 +97,10 @@ export default function GetIsWishlist({ctx, type, slug, id}) {
             <> 
                 {
                     item == true ?
-                        <button className='btn btn-danger rounded px-4 h-100 me-2' title="Remove from wishlist">
+                        <button className='btn btn-danger rounded px-4 h-100 me-2' title="Remove from wishlist" onClick={delWishlist}>
                             <FontAwesomeIcon icon={faHeart} size="xl"/></button>
                     :
-                        <button className='btn text-danger rounded px-4 h-100 me-2' style={{border:"1.5px solid var(--warningBG)"}} title="Add to wishlist" onClick={handleSubmit}>
+                        <button className='btn text-danger rounded px-4 h-100 me-2' style={{border:"1.5px solid var(--warningBG)"}} title="Add to wishlist" onClick={postWishlist}>
                             <FontAwesomeIcon icon={faHeart} size="xl"/></button>
                 } 
             </>
