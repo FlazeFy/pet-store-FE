@@ -1,9 +1,9 @@
 export const storeLocal = (name,val) => {
     try {
-        if (Array.isArray(val)) {
+        if (Array.isArray(val) && val != false && val != true) {
             val = JSON.stringify(val)
         } else {
-            if(val == null){
+            if(val == null || val == false || val == true){
                 val = val
             } else {
                 val = val.trim()

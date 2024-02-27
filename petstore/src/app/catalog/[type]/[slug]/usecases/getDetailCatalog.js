@@ -1,4 +1,4 @@
-import { getLocal } from '@/modules/storages/local'
+import { getLocal, storeLocal } from '@/modules/storages/local'
 import React from 'react'
 import { useState, useEffect } from "react"
 
@@ -8,19 +8,35 @@ import style from '../../../../../components/label/label.module.css'
 //Font awesome classicon
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus, faClose, faHeadset, faHeart, faLeaf, faPaw } from "@fortawesome/free-solid-svg-icons"
+import { faCartPlus, faClose, faCopy, faEdit, faHeadset, faHeart, faLeaf, faPaw, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
 import GetBreakLine from '@/components/others/breakLine'
 import GetIsWishlist from './getIsWishlist'
+import validateRole from '@/modules/helpers/auth'
+import PostEditMode from './postEditMode'
 
 export default function GetDetailCatalog({ctx, type, slug}) {
     //Initial variable
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [item, setItems] = useState(null)
+    const keyToken = getLocal("token_key")
+    const keyRole = getLocal('role_key')
+    const authedRole = validateRole(keyRole, keyToken)
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:1323/api/v1/`+type+`/detail/`+slug)
+        //Default config
+        const keyEditMode = getLocal("edit_mode_catalog")
+
+        if(keyEditMode === null){
+            storeLocal("edit_mode_catalog",'false')
+        }
+
+        fetch(`http://127.0.0.1:1323/api/v1/`+type+`/detail/`+slug, {
+            headers: {
+                Authorization: `Bearer ${keyToken}`
+            }
+        })
         .then(res => res.json())
             .then(
             (result) => {
@@ -38,7 +54,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
             }
         )
     },[])
-
+    
     function getGenderColor(val){
         if(val == 'male'){
             return 'var(--primaryColor)'
@@ -70,6 +86,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
         )
     } else {
         const tags = JSON.parse(item[0][type+'s_detail'])
+
         return (
             <> 
                 <span>
@@ -87,19 +104,37 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                         <></>
                                 }/> {item[0][type+'s_name']}</h1>
                                 {
-                                    type == 'plant' ? 
-                                        <h6>Born at {item[0][type+'s_date_born']}</h6>
+                                    type == 'animal' ? 
+                                        <h6>Born at {getLocal("edit_mode_catalog")} {item[0][type+'s_date_born']}</h6>
                                     : 
                                         <></>
                                 }
                             </div>
-                            <div>
-                                <button className='btn btn-success rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
-                                    <FontAwesomeIcon icon={faCartPlus} size="xl"/></button>
-                                <GetIsWishlist ctx="get_is_wishlist" type={type} slug={slug} id={item[0][type+'s_id']}/>
-                                <button className='btn btn-info text-white rounded px-4 h-100' title={"Ask more about "+ item[0][type+'s_name']} onClick={(e) => window.location.href = '/catalog'}>
-                                    <FontAwesomeIcon icon={faHeadset} size="xl"/></button>
-                            </div>
+                            {
+                                authedRole == "customer" ? 
+                                    <div>
+                                        <button className='btn btn-success rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
+                                            <FontAwesomeIcon icon={faCartPlus} size="xl"/></button>
+                                        <GetIsWishlist ctx="get_is_wishlist" type={type} slug={slug} id={item[0][type+'s_id']}/>
+                                        <button className='btn btn-info text-white rounded px-4 h-100' title={"Ask more about "+ item[0][type+'s_name']} onClick={(e) => window.location.href = '/catalog'}>
+                                            <FontAwesomeIcon icon={faHeadset} size="xl"/></button>
+                                    </div>
+                                : authedRole == "staff" ?
+                                    <div>
+                                        <button className='btn btn-info text-white rounded px-4 h-100' title={"Ask more about "+ item[0][type+'s_name']} onClick={(e) => window.location.href = '/catalog'}>
+                                            <FontAwesomeIcon icon={faHeadset} size="xl"/></button>
+                                    </div>
+                                : 
+                                    <div>
+                                        <PostEditMode/>
+                                        <button className='btn btn-danger rounded px-4 h-100 me-2' title={"Delete this "+type} onClick={(e) => window.location.href = '/catalog'}>
+                                            <FontAwesomeIcon icon={faTrash} size="xl"/></button>
+                                        <button className='btn btn-warning text-white rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
+                                            <FontAwesomeIcon icon={faCopy} size="xl"/></button>
+                                    </div>
+
+                            }
+                           
                         </div>
                         <GetBreakLine length={1}/>
                         <hr></hr>
@@ -111,7 +146,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                 );
                             })
                         }
-                        <GetBreakLine length={1}/>
+                        <GetBreakLine length={2}/>
                         <div className='text-center'>
                             <h3 className='mb-4'>About {ucFirstChar(type)}</h3>
                             <div className='row mb-3 text-center'>

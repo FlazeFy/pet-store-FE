@@ -79,7 +79,7 @@ export default function GetDoctorSchedule({ctx}) {
                                                         if(item['schedule_hour'] == hr && item['schedule_day'] == dy){
                                                             totalItem++
                                                             return <>
-                                                                <td><button className={'btn '+getReadyColor(item['is_ready'])} title='Book at this schedule'>{item['doctors_name']}</button></td>
+                                                                <td><button className={'btn '+getReadyColor(item['is_ready'])} title='Book at this schedule'>{item['doctor_name']}</button></td>
                                                             </>
                                                         } else {
                                                             return <td>-</td>
