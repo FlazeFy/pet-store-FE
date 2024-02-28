@@ -11,7 +11,7 @@ export default function FilterOrderCatalog() {
     const selectedCatalogOrder = getLocal("Table_order_all_catalog")
 
     return (
-        <div className="form-floating mb-3">
+        <div className="form-floating mb-3 me-3">
             <select class="form-select" id="floatingSelect" onChange={(e) => toogle(e.target.value)} aria-label="Floating label select example">
                 <option value="desc" selected={selectedCatalogOrder === 'desc' ? true : false}>Descending</option>
                 <option value="asc" selected={selectedCatalogOrder === 'asc' ? true : false}>Ascending</option>

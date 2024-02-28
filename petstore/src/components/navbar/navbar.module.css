@@ -49,3 +49,18 @@
     border-bottom: 2px solid var(--whiteColor);
     font-weight: 600;
 }
+
+.page_bar, .page_bar_active {
+    border: 1.5px solid var(--successBG);
+    border-radius: var(--roundedSM);
+    padding: var(--spaceSM) var(--spaceMD);
+    margin-right: var(--spaceSM);
+    margin-top: var(--spaceSM);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--whiteColor);
+    background: none;
+}
+.page_bar_active, .page_bar:hover {
+    background: var(--successBG);
+}

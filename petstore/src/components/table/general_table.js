@@ -1,10 +1,12 @@
 import React from 'react'
 
 import PageBar from '../navbar/page_bar'
-import GetOrdering from '../controls/ordering'
-import GetLimit from '../controls/limit'
 import GetManageModal from '../modals/manage'
-import GetSearch from '../controls/search'
+
+//Font awesome classicon
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from "@fortawesome/free-solid-svg-icons"
 
 export default function GetGeneralTable({builder, items, maxPage, currentPage, ctx}) {
     function getExtraDesc(ext, val){
@@ -21,9 +23,6 @@ export default function GetGeneralTable({builder, items, maxPage, currentPage, c
 
     return (
         <div className='custom-tbody'>
-            <GetSearch placeholder={"test"} ctx={ctx}/>
-            <GetOrdering ctx={ctx}/>
-            <GetLimit ctx={ctx} type={"table"}/>
             <table className="table">
                 <thead>
                     <tr key={"a"}>
@@ -35,7 +34,7 @@ export default function GetGeneralTable({builder, items, maxPage, currentPage, c
                                 );
                             } else {
                                 return (
-                                    <td key={i}>{val['column_name']}</td>
+                                    <th key={i}>{val['column_name']}</th>
                                 );
                             }
                         })
@@ -52,17 +51,25 @@ export default function GetGeneralTable({builder, items, maxPage, currentPage, c
                                         if(item[build['column_name']] != 'Manage' && item[build['object_name']] != null){
                                             if(i == 0){
                                                 return (
-                                                    <th scope="row" key={j}>{getExtraDesc(build['extra_desc'], item[build['object_name']])}</th>
+                                                    <td scope="row" key={j}>{getExtraDesc(build['extra_desc'], item[build['object_name']])}</td>
                                                 );
                                             } else {
                                                 return (
-                                                    <th key={j}>{getExtraDesc(build['extra_desc'], item[build['object_name']])}</th>
+                                                    <td key={j}>{getExtraDesc(build['extra_desc'], item[build['object_name']])}</td>
                                                 );
                                             }
                                         } else {
-                                            return (
-                                                <th key={j}><GetManageModal builder={builder} items={item} id={i}/></th>
-                                            );
+                                            if(item[build['path']] != null){
+                                                return (
+                                                    <td key={j}>
+                                                        <a className="btn btn-primary py-3 px-4" href={"/catalog/"+item['catalog_type']+"/"+item[build['path']]}><FontAwesomeIcon icon={faEdit}/></a>
+                                                    </td>
+                                                );
+                                            } else {
+                                                return (
+                                                    <td key={j}><GetManageModal builder={builder} items={item} id={i}/></td>
+                                                );
+                                            }
                                         }
                                     })
                                 }

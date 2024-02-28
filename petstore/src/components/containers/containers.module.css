@@ -15,7 +15,7 @@
 }
 .cat_cont:hover {
     border: 3px solid var(--primaryColor);
-    transform: rotate(-2deg);
+    transform: scale(1.05);
 }
 .cat_body {
     padding: var(--spaceMD);

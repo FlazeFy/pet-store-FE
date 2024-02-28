@@ -1,4 +1,5 @@
 import GetCatalogContainer from '@/components/containers/catalog'
+import GetGeneralTable from '@/components/table/general_table'
 import React from 'react'
 import { useState, useEffect } from "react"
 
@@ -10,6 +11,8 @@ export default function GetAllCatalog({ctx}) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [items, setItems] = useState([])
+    const [maxPage, setMaxPage] = useState(0)
+    const [currPage, setCurrPage] = useState(0)
 
     useEffect(() => {
         //Default config
@@ -24,6 +27,8 @@ export default function GetAllCatalog({ctx}) {
             .then(
             (result) => {
                 setIsLoaded(true)
+                setMaxPage(result.data.last_page)
+                setCurrPage(result.data.current_page)
                 setItems(result.data.data)        
             },
             (error) => {
@@ -38,6 +43,60 @@ export default function GetAllCatalog({ctx}) {
         )
     },[])
 
+    const builder = [
+        {
+            column_name: "Name",
+            object_name: "catalog_name",
+            extra_desc: null,
+            type: 'text',
+            class: 'form-control',
+            label: 'Catalog Name',
+            placeholder: 'Type catalog name',
+            is_required: true,
+            is_obsecure: false,
+            max: 75,
+        },
+        {
+            column_name: "Description",
+            object_name: "catalog_bio",
+            extra_desc: null,
+            type: 'textarea',
+            class: 'form-control',
+            label: 'Catalog Description',
+            placeholder: 'Type catalog description',
+            is_required: true,
+            max: 500,
+        },
+        {
+            column_name: "Price",
+            object_name: "catalog_price",
+            extra_desc: null,
+            type: 'number',
+            class: 'form-control',
+            label: 'Catalog Price',
+            placeholder: 'Type catalog price',
+            is_required: true,
+            max: 36,
+        },
+        {
+            column_name: "Stock",
+            object_name: "catalog_stock",
+            extra_desc: null,
+            type: 'number',
+            class: 'form-control',
+            label: 'Catalog Stock',
+            placeholder: 'Type catalog stock',
+            is_required: true,
+            max: 36,
+        },
+        {
+            column_name: "Manage",
+            object_name: null,
+            path: "catalog_slug",
+            extra_desc: null
+        }
+    ]
+
     if (error) {
         return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
@@ -50,11 +109,14 @@ export default function GetAllCatalog({ctx}) {
         return (
             <> 
                 {
-                    items.map((data, i, idx) => {
-                        return (
-                            <GetCatalogContainer builder={data}/>
-                        );
-                    })
+                    getLocal('catalog_view_mode') == 'catalog' ?
+                        items.map((data, i, idx) => {
+                            return (
+                                <GetCatalogContainer builder={data}/>
+                            );
+                        })
+                    :
+                        <GetGeneralTable builder={builder} items={items} maxPage={maxPage} currentPage={currPage} ctx={"Catalog"} urlDel={""}/>  
                 }
             </>
         )
