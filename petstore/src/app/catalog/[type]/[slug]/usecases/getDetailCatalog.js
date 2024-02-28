@@ -8,7 +8,7 @@ import style from '../../../../../components/label/label.module.css'
 //Font awesome classicon
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus, faClose, faCopy, faHeadset, faLeaf, faPaw, faTrash, faXmarkCircle } from "@fortawesome/free-solid-svg-icons"
+import { faCartPlus, faClose, faCopy, faHeadset, faLeaf, faPaw, faXmarkCircle } from "@fortawesome/free-solid-svg-icons"
 import { numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
 import GetBreakLine from '@/components/others/breakLine'
 import GetIsWishlist from './getIsWishlist'
@@ -16,6 +16,7 @@ import validateRole from '@/modules/helpers/auth'
 import PostEditMode from './postEditMode'
 import GetRichTextEditor from '@/components/others/richtext'
 import GetAllTag from '@/components/others/tag'
+import DeleteCatalog from './deleteCatalog'
 
 export default function GetDetailCatalog({ctx, type, slug}) {
     //Initial variable
@@ -136,8 +137,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                 : 
                                     <div>
                                         <PostEditMode/>
-                                        <button className='btn btn-danger rounded px-4 h-100 me-2' title={"Delete this "+type} onClick={(e) => window.location.href = '/catalog'}>
-                                            <FontAwesomeIcon icon={faTrash} size="xl"/></button>
+                                        <DeleteCatalog name={item[0][type+'s_name']} slug={item[0][type+'s_slug']} type={type}/>
                                         <button className='btn btn-warning text-white rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
                                             <FontAwesomeIcon icon={faCopy} size="xl"/></button>
                                     </div>
