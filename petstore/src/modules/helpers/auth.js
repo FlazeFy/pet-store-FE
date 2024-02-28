@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from "react"
 import { getLocal } from "../storages/local"
 
@@ -14,21 +14,21 @@ export const isLogged = (logval, outval) => {
     }
 }
 
-export default function validateRole({roleLocal, token}) {
+export default function validateRole() {
     try {
+        const [res, setRes] = useState(null)
+
         useEffect(() => {
             fetch(`http://127.0.0.1:1323/api/v1/check`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${getLocal('token_key')}`
                 }
             })
             .then(res => res.json())
                 .then(
                 (result) => {
-                    if(result.data == roleLocal){
-                        return result.data
-                    } else {
-                        return null
+                    if(getLocal('role_key') == result.data){
+                        setRes(result.data)
                     }
                 },
                 (error) => {
@@ -40,6 +40,7 @@ export default function validateRole({roleLocal, token}) {
                 }
             )
         },[])
+        return res
     } catch (error) {
         throw error
     }

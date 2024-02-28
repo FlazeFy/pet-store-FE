@@ -152,3 +152,22 @@ button.btn:hover {
 .box-role:hover .box-lable {
   display: block;
 }
+
+.form-control, .form-select {
+  padding: var(--spaceMD) !important;
+  margin: var(--spaceMD) !important;
+  border: 1.5px solid var(--greyColor) !important;
+  border-radius: var(--roundedLG) !important;
+}
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+  background: var(--primaryColor) !important;
+}
+
+.ql-toolbar {
+  border-radius: var(--roundedLG) var(--roundedLG) 0 0 !important;
+}
+.ql-container{
+  height: 260px !important;
+  border-radius: 0 0 var(--roundedLG) var(--roundedLG) !important;
+}

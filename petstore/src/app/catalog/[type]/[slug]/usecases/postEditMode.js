@@ -19,7 +19,7 @@ export default function PostEditMode() {
         <> 
             {
                 getLocal("edit_mode_catalog") === 'true' ?
-                    <button className='btn btn-success rounded px-4 h-100 me-2' title="Edit mode" onClick={(e) => handleSubmit('false')}>
+                    <button className='btn btn-success rounded px-4 h-100 me-2' title="Save edited data" onClick={(e) => handleSubmit('false')}>
                         <FontAwesomeIcon icon={faFloppyDisk} size="xl"/></button>
                 :
                     <button className='btn btn-primary rounded px-4 h-100 me-2' title="Edit mode" onClick={(e) => handleSubmit('true')}>
