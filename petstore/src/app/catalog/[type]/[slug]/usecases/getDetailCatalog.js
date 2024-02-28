@@ -9,12 +9,13 @@ import style from '../../../../../components/label/label.module.css'
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faClose, faCopy, faHeadset, faLeaf, faPaw, faTrash, faXmarkCircle } from "@fortawesome/free-solid-svg-icons"
-import { ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
+import { numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
 import GetBreakLine from '@/components/others/breakLine'
 import GetIsWishlist from './getIsWishlist'
 import validateRole from '@/modules/helpers/auth'
 import PostEditMode from './postEditMode'
 import GetRichTextEditor from '@/components/others/richtext'
+import GetAllTag from '@/components/others/tag'
 
 export default function GetDetailCatalog({ctx, type, slug}) {
     //Initial variable
@@ -99,7 +100,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                     authedRole == 'admin' && keyEditMode == 'true' ?
                                         <>
                                             <h5 className='text-secondary'>Name</h5>
-                                            <input type="text" className='form-control ms-0' value={item[0][type+'s_name']}/>
+                                            <input type="text" className='form-control ext ms-0' value={item[0][type+'s_name']}/>
                                         </>
                                     :
                                         <h1 className={style.title_text + ' mb-1'}><FontAwesomeIcon icon={
@@ -150,6 +151,9 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                             authedRole == 'admin' && keyEditMode == 'true' ?
                                 <>
                                     <h5 className='text-secondary'>Available Tag</h5>
+                                    <GetAllTag ctx="all_tag"/>
+                                    <GetBreakLine length={2}/>
+
                                     <h5 className='text-secondary'>Selected Tag</h5>
                                     {
                                         tags.map((data, i, idx) => {
@@ -173,18 +177,18 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                 <div className='col-lg-4 col-md-4 col-sm-6'>
                                     {
                                         authedRole == 'admin' && keyEditMode == 'true' ?
-                                            <input type="number" className='form-control' value={item[0][type+'s_stock']}/>
+                                            <input type="number" className='form-control ext' value={item[0][type+'s_stock']}/>
                                         :
                                             <h2 className='mb-0 fw-bold' style={{color:getTotalColor(item[0][type+'s_stock'])}}>{ucFirstWord(item[0][type+'s_stock'])}</h2>
                                     }
-                                    <h5 className='text-secondary'>Stock {authedRole}</h5>
+                                    <h5 className='text-secondary'>Stock</h5>
                                 </div>
                                 <div className='col-lg-4 col-md-4 col-sm-6'>
                                     {
                                         authedRole == 'admin' && keyEditMode == 'true' ?
-                                            <input type="number" className='form-control' value={item[0][type+'s_price']}/>
+                                            <input type="number" className='form-control ext' value={item[0][type+'s_price']}/>
                                         :
-                                            <h2 className='mb-0 fw-bold' style={{color:getTotalColor(item[0][type+'s_price'])}}>{ucFirstWord(item[0][type+'s_price'])}</h2>
+                                            <h2 className='mb-0 fw-bold' style={{color:getTotalColor(item[0][type+'s_price'])}}>{numberToPrice(item[0][type+'s_price'])}</h2>
                                     }
                                     <h5 className='text-secondary'>Price</h5>
                                 </div>
@@ -193,7 +197,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                         <div className='col-lg-4 col-md-4 col-sm-6'>
                                             {
                                                 authedRole == 'admin' && keyEditMode == 'true' ?
-                                                    <select class="form-select" aria-label="Default select example">
+                                                    <select class="form-select ext" aria-label="Default select example">
                                                         <option value="male" selected={item[0][type+'s_gender'] == 'male' ? true : false}>Male</option>
                                                         <option value="female" selected={item[0][type+'s_gender'] == 'female' ? true : false}>Female</option>
                                                     </select>
