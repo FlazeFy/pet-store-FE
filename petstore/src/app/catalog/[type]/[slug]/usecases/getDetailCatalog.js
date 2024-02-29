@@ -9,7 +9,7 @@ import style from '../../../../../components/label/label.module.css'
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faClose, faCopy, faHeadset, faLeaf, faPaw, faXmarkCircle } from "@fortawesome/free-solid-svg-icons"
-import { numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
+import { convertDatetime, numberToPrice, ucFirstChar, ucFirstWord } from '@/modules/helpers/converter'
 import GetBreakLine from '@/components/others/breakLine'
 import GetIsWishlist from './getIsWishlist'
 import validateRole from '@/modules/helpers/auth'
@@ -17,6 +17,8 @@ import PostEditMode from './postEditMode'
 import GetRichTextEditor from '@/components/others/richtext'
 import GetAllTag from '@/components/others/tag'
 import DeleteCatalog from './deleteCatalog'
+import GetInfoBox from '@/components/messages/info_box'
+import PostRecoverCatalog from './recoverCatalog'
 
 export default function GetDetailCatalog({ctx, type, slug}) {
     //Initial variable
@@ -93,6 +95,17 @@ export default function GetDetailCatalog({ctx, type, slug}) {
             <> 
                 <span>
                     <div className={style.title_holder}>
+                        {
+                            item[0]['deleted_at'] != "" ?
+                                <GetInfoBox type='warning-box' content={
+                                    <p className='text-start text-danger fst-italic'> This item is already deleted. But you can recover this item, before it passed 30 days after deleted.
+                                        <PostRecoverCatalog name={item[0][type+'s_name']} slug={item[0][type+'s_slug']} type={type}/>
+                                    </p>
+                                    }
+                                />
+                            :
+                                <></>
+                        }
                         <div className="d-flex justify-content-between">
                             <button className='btn btn-danger rounded px-4' title="Back" onClick={(e) => window.location.href = '/catalog'}>
                                 <FontAwesomeIcon icon={faClose} size="xl"/></button>
@@ -137,7 +150,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                 : 
                                     <div>
                                         <PostEditMode/>
-                                        <DeleteCatalog name={item[0][type+'s_name']} slug={item[0][type+'s_slug']} type={type}/>
+                                        <DeleteCatalog name={item[0][type+'s_name']} slug={item[0][type+'s_slug']} type={type} isDeleted={item[0]['deleted_at'] != "" ? true: false}/>
                                         <button className='btn btn-warning text-white rounded px-4 h-100 me-2' title="Add to cart" onClick={(e) => window.location.href = '/catalog'}>
                                             <FontAwesomeIcon icon={faCopy} size="xl"/></button>
                                     </div>
@@ -216,6 +229,24 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                 :
                                     <div className='desc-holder' dangerouslySetInnerHTML={{ __html: item[0][type+'s_bio'] }}></div>
                             }
+                            <GetBreakLine length={1}/>
+                            <hr></hr>
+                            <GetBreakLine length={1}/>
+                            <h5 className='text-secondary'>Properties</h5>
+                            <div className='row'>
+                                <div className='col-lg-4 col-md-4 col-sm-12'>
+                                    <p className='mb-0' style={{fontWeight:"500"}}>Created At</p>
+                                    <p style={{fontSize:"var(--textXMD)"}}>{convertDatetime(item[0]['created_at'],'calendar')}</p>
+                                </div>
+                                <div className='col-lg-4 col-md-4 col-sm-12'>
+                                    <p className='mb-0' style={{fontWeight:"500"}}>Updated At</p>
+                                    <p style={{fontSize:"var(--textXMD)"}}>{convertDatetime(item[0]['updated_at'],'calendar')}</p>
+                                </div>
+                                <div className='col-lg-4 col-md-4 col-sm-12'>
+                                    <p className='mb-0' style={{fontWeight:"500"}}>Deleted At</p>
+                                    <p style={{fontSize:"var(--textXMD)"}}>{convertDatetime(item[0]['deleted_at'],'calendar')}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </span>

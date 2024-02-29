@@ -1,0 +1,10 @@
+.info_box {
+    border-radius: var(--roundedLG);
+    width: 100%;
+    padding: var(--spaceXMD);
+    text-align: start;
+    margin: var(--spaceXMD) 0;
+}
+.info_box p {
+    margin: 0;
+}
