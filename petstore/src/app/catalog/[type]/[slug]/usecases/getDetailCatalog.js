@@ -96,7 +96,7 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                 <span>
                     <div className={style.title_holder}>
                         {
-                            item[0]['deleted_at'] != "" ?
+                            item[0]['deleted_at'] != "" && authedRole == 'admin' ?
                                 <GetInfoBox type='warning-box' content={
                                     <p className='text-start text-danger fst-italic'> This item is already deleted. But you can recover this item, before it passed 30 days after deleted.
                                         <PostRecoverCatalog name={item[0][type+'s_name']} slug={item[0][type+'s_slug']} type={type}/>
@@ -242,10 +242,15 @@ export default function GetDetailCatalog({ctx, type, slug}) {
                                     <p className='mb-0' style={{fontWeight:"500"}}>Updated At</p>
                                     <p style={{fontSize:"var(--textXMD)"}}>{convertDatetime(item[0]['updated_at'],'calendar')}</p>
                                 </div>
-                                <div className='col-lg-4 col-md-4 col-sm-12'>
-                                    <p className='mb-0' style={{fontWeight:"500"}}>Deleted At</p>
-                                    <p style={{fontSize:"var(--textXMD)"}}>{convertDatetime(item[0]['deleted_at'],'calendar')}</p>
-                                </div>
+                                {
+                                    authedRole == 'admin' ?
+                                        <div className='col-lg-4 col-md-4 col-sm-12'>
+                                            <p className='mb-0' style={{fontWeight:"500"}}>Deleted At</p>
+                                            <p style={{fontSize:"var(--textXMD)"}}>{convertDatetime(item[0]['deleted_at'],'calendar')}</p>
+                                        </div>
+                                    : 
+                                        <></>
+                                }
                             </div>
                         </div>
                     </div>
